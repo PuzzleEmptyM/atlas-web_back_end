@@ -3,7 +3,8 @@ import createUser from './utils';
 
 function handleProfileSignup() {
   return Promise.all([uploadPhoto(), createUser()])
-    .then(([photo, user]) => {
+    .then((values) => {
+      const [photo, user] = values;
       console.log(`${photo.body} ${user.firstName} ${user.lastName}`);
     })
     .catch(() => {
