@@ -3,7 +3,7 @@ function handleResponseFromAPI(promise) {
     .then(() => {
       return {
         status: 200,
-        body: 'success'
+        body: 'success',
       };
     })
     .catch(() => new Error())
