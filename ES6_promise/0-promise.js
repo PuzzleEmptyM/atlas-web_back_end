@@ -1,6 +1,6 @@
 function getResponseFromAPI() {
   return new Promise((resolve, reject) => {
-    const condition = true; 
+    const condition = true;
     if (condition) {
       resolve();
     } else {
