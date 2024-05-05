@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """
-This module contains an asynchronous coroutine that runs another coroutine multiple times concurrently.
+This module contains an asynchronous coroutine that runs another coroutine
+multiple times concurrently.
 """
 import asyncio
-from 0-basic_async_syntax import wait_random
+wait_random = __import__('0-basic_async_syntax').wait_random
 
 
 async def wait_n(n: int, max_delay: int) -> list:
@@ -15,7 +16,8 @@ async def wait_n(n: int, max_delay: int) -> list:
     max_delay (int): The maximum delay for wait_random.
 
     Returns:
-    list: A list of float values representing the delays, ordered naturally by concurrency.
+    list: A list of float values representing the delays, ordered naturally
+    by concurrency.
     """
     tasks = [wait_random(max_delay) for _ in range(n)]
     completed_delays = []
