@@ -8,13 +8,13 @@ import random
 from typing import AsyncGenerator  # Ensure you're using Python 3.9 or newer
 
 
-async def async_generator() -> AsyncGenerator[float, None]:
+async def async_generator() -> AsyncGenerator[float, None, None]:
     """
     This coroutine loops 10 times, waits asynchronously for 1 second,
     and yields a random number between 0 and 10 each iteration.
 
     Returns:
-        AsyncGenerator[float, None]: An asynchronous generator yielding floats.
+        AsyncGenerator[float, None, None]: An asynchronous generator yielding floats.
     """
     for _ in range(10):
         await asyncio.sleep(1)
