@@ -5,7 +5,7 @@ generates random numbers asynchronously.
 """
 import asyncio
 import random
-from collections.abc import AsyncGenerator  # Ensure you're using Python 3.9 or newer
+from typing import AsyncGenerator  # Ensure you're using Python 3.9 or newer
 
 
 async def async_generator() -> AsyncGenerator[float, None]:
