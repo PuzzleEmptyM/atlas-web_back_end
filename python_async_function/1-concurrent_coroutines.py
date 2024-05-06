@@ -10,14 +10,9 @@ wait_random = __import__('0-basic_async_syntax').wait_random
 
 async def wait_n(n: int, max_delay: int) -> List[float]:
     """
-    Runs wait_random n times concurrently with the specified max_delay and
-    returns a list of delays.
-    Args:
-    n (int): The number of times to run wait_random.
-    max_delay (int): The maximum delay for wait_random.
-    Returns:
-    List[float]: A list of float values representing the delays, ordered
-    naturally by concurrency.
+    arg1: n - number of times to run wait_random.
+    arg2: max_delay - maximum delay for wait_random.
+    return: a list of float values representing the delays
     """
     tasks = [wait_random(max_delay) for _ in range(n)]
     completed_delays = []
