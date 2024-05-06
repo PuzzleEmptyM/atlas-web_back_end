@@ -11,6 +11,8 @@ async def async_generator():
     """
     This coroutine loops 10 times, waits asynchronously for 1 second
     and yeilds a random number between 0 and 10 each iteration
+
+    return: async_generator - typing.Generator[float, NoneType, NoneType]
     """
     for _ in range(10):
         await asyncio.sleep(1)  # Asynchronously wait for 1 second
