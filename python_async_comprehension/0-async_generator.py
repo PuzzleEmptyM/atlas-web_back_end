@@ -5,14 +5,15 @@ generates random numbers asynchrounosly
 """
 import asyncio
 import random
+from collections.abc import AsyncGenerator
 
 
-async def async_generator():
+async def async_generator() -> AsyncGenerator[float, None]:
     """
     This coroutine loops 10 times, waits asynchronously for 1 second
     and yeilds a random number between 0 and 10 each iteration
 
-    return: async_generator - typing.Generator[float, NoneType, NoneType]
+    return: AsyncGenerator[float, None]
     """
     for _ in range(10):
         await asyncio.sleep(1)  # Asynchronously wait for 1 second
