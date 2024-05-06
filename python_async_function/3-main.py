@@ -3,8 +3,6 @@
 This script demonstrates creating and using an asyncio.Task.
 """
 import asyncio
-
-
 task_wait_random = __import__('3-tasks').task_wait_random
 
 
