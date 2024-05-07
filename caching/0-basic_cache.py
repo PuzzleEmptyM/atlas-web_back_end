@@ -2,19 +2,7 @@
 """
 A class BasicCache that inherits from BaseCaching and is a caching system
 """
-
-
-class BaseCaching:
-    """
-    Base caching class with basic methods to manage caching
-    """
-    def __init__(self):
-        self.cache_data = {}
-
-    def print_cache(self):
-        print("Current cache:")
-        for key in self.cache_data:
-            print(f"{key}: {self.cache_data[key]}")
+from base_caching import BaseCaching
 
 
 class BasicCache(BaseCaching):
