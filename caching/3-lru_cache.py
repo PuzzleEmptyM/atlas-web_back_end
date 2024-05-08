@@ -33,7 +33,6 @@ class LRUCache(BaseCaching):
                 self.cache_data[key] = item
                 self.usage_order.append(key)
 
-
     def get(self, key):
         """
         Return value linked to key from cache_data
