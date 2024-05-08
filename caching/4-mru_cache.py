@@ -23,6 +23,7 @@ class MRUCache(BaseCaching):
         """
         if key is not None and item is not None:
             if key in self.cache_data:
+                self.cache_data[key] = item
                 self.usage_order.remove(key)
             elif len(self.cache_data) >= self.MAX_ITEMS:
                 mru_key = self.usage_order.pop()
@@ -37,7 +38,7 @@ class MRUCache(BaseCaching):
         Move key to end of usage list to mark as recently used
         Return None if key is None or not in cache_data
         """
-        if key is not None or key not in self.cache_data:
+        if key is None or key not in self.cache_data:
             return None
         self.usage_order.remove(key)
         self.usage_order.append(key)
