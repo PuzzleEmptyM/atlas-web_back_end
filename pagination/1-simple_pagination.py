@@ -9,7 +9,7 @@ import csv
 from typing import List, Tuple
 
 
-def index_range(page: int, page_size: int) -> tuple:
+def index_range(page: int, page_size: int) -> Tuple[int, int]:
     """
     Arg1: page - int
     Arg2: page_size - int
@@ -39,7 +39,7 @@ class Server:
                 dataset = [row for row in reader]
             self.__dataset = dataset[1:]  # Skip header row
         return self.__dataset
-    
+
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """
         Arg1: page - int
@@ -50,11 +50,11 @@ class Server:
             Page must be an integer greater than 0."
         assert isinstance(page_size, int) and page_size > 0, "\
             Page must be an integer greater than 0."
-        
+
         start_index, end_index = index_range(page, page_size)
         dataset = self.dataset()
 
         if start_index >= len(dataset):
             return []
-        
+
         return dataset[start_index:end_index]
