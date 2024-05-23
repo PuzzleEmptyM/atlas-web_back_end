@@ -5,6 +5,10 @@ This function "filter_datum" returns a log message obfuscated
 import logging
 import re
 from typing import List
+import os
+import mysql.connector
+from mysql.connector import connection
+
 
 PII_FIELDS = ('email', 'phone', 'ssn', 'name', 'password')
 
@@ -72,3 +76,37 @@ def get_logger() -> logging.Logger:
     logger.addHandler(stream_handler)
 
     return logger
+
+
+def get_db() -> connection.MySQLConnection:
+    """
+    Environment Variables:
+        PERSONAL_DATA_DB_USERNAME (str): Database username, default 'root'.
+        PERSONAL_DATA_DB_PASSWORD (str): Database password,\
+            default an empty string.
+        PERSONAL_DATA_DB_HOST (str): Database host, default 'localhost'.
+        PERSONAL_DATA_DB_NAME (str): Database name, required.
+
+    Returns:
+        MySQLConnection: A connection object to the MySQL database.
+    """
+    username = os.getenv('PERSONAL_DATA_DB_USERNAME', 'root')
+    password = os.getenv('PERSONAL_DATA_DB_PASSWORD', '')
+    host = os.getenv('PERSONAL_DATA_DB_HOST', 'localhost')
+    dbname = os.getenv('PERSONAL_DATA_DB_NAME')
+
+    if dbname is None:
+        raise ValueError("The PERSONAL_DATA_DB_NAME environment\
+                         variable is required.")
+
+    try:
+        db_conn = mysql.connector.connect(
+            user=username,
+            password=password,
+            host=host,
+            database=dbname
+        )
+        return db_conn
+    except mysql.connector.Error as err:
+        print(f"Error connecting to the database: {err}")
+        raise
