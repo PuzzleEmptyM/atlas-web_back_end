@@ -63,8 +63,8 @@ def before_request():
             'Path does not require authentication: %s', request.path)
         return
 
-    if auth.authorization_header(request) is None and\
-        auth.session_cookie(request) is None:
+    if auth.authorization_header(request) is None\
+     and auth.session_cookie(request) is None:
         app.logger.info(
             'No authorization header or session cookie provided')
         abort(401)
