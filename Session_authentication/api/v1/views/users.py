@@ -3,6 +3,9 @@
 from api.v1.views import app_views
 from flask import abort, jsonify, request
 from models.user import User
+import logging
+
+logging.basicConfig(level=logging.INFO)
 
 
 @app_views.route('/users', methods=['GET'], strict_slashes=False)
@@ -44,8 +47,11 @@ def view_authenticated_user() -> str:
       - the authenticated User object JSON represented
       - 404 if no User is authenticated
     """
+    logging.info('Fetching authenticated user')
     if request.current_user is None:
+        logging.error('No authenticated user found')
         abort(404)
+    logging.info('Authenticated user found: %s', request.current_user)
     return jsonify(request.current_user.to_json())
 
 
