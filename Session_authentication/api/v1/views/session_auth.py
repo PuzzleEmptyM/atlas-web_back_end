@@ -1,6 +1,5 @@
 # api/v1/views/session_auth.py
 """
-Session authentication views
 Handles routes for session-based user authentication
 """
 from flask import Blueprint, jsonify, request, abort
