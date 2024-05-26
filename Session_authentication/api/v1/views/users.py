@@ -1,4 +1,3 @@
-# api/v1/views/users.py
 #!/usr/bin/env python3
 """ Module of Users views """
 from api.v1.views import app_views
