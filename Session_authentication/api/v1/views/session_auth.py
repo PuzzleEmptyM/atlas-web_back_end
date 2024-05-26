@@ -1,17 +1,15 @@
 #!/usr/bin/env python3
 """
+Session authentication views
 Handles routes for session-based user authentication
 """
 from flask import Blueprint, jsonify, request, abort
 from models.user import User
 from os import getenv
 
-
 session_auth = Blueprint('session_auth', __name__)
 
-
-@session_auth.route(
-        '/auth_session/login', methods=['POST'], strict_slashes=False)
+@session_auth.route('/auth_session/login', methods=['POST'], strict_slashes=False)
 def login():
     """
     POST /api/v1/auth_session/login
@@ -38,5 +36,5 @@ def login():
     session_id = auth.create_session(user.id)
     response = jsonify(user.to_json())
     response.set_cookie(getenv('SESSION_NAME'), session_id)
-
+    
     return response
