@@ -77,7 +77,7 @@ class Auth:
     def get_user_from_session_id(self, session_id: str) -> User:
         """
         Arg1: session_id - str; the session ID of the user
-        Return: User - the user corresponding to the session ID, or None if not found
+        Return: User - user corresponding to session ID, or None if not found
         """
         if session_id is None:
             return None
