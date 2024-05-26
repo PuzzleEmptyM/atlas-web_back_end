@@ -72,8 +72,9 @@ class BasicAuth(Auth):
             self, user_email: str, user_pwd: str) -> TypeVar('User'):
         """
         Returns the User instance based on his email and password
-        Arg: user_email - str; The user email
-        Arg: user_pwd - str; The user password
+
+        Arg: user_email - str; user email
+        Arg: user_pwd - str; user password
         Return: User instance or None if invalid credentials
         """
         if user_email is None or not isinstance(user_email, str):
