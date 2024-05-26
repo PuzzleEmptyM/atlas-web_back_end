@@ -4,6 +4,7 @@ Auth module
 """
 import bcrypt
 
+
 def _hash_password(password: str) -> bytes:
     """
     Arg1: password - str; the password to hash
