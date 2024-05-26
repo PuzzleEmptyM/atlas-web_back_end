@@ -7,7 +7,9 @@ from flask import Blueprint, jsonify, request, abort
 from models.user import User
 from os import getenv
 
+
 session_auth = Blueprint('session_auth', __name__)
+
 
 @session_auth.route('/auth_session/login', methods=['POST'], strict_slashes=False)
 def login():
