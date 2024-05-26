@@ -10,9 +10,10 @@ from os import getenv
 session_auth = Blueprint('session_auth', __name__)
 
 
-@session_auth.route('/auth_session/login', methods=['POST'], strict_slashes=False)
+@session_auth.route(
+        '/auth_session/login', methods=['POST'], strict_slashes=False)
 def login():
-    """ 
+    """
     POST /api/v1/auth_session/login
     Handles user login via session authentication
     """
@@ -37,5 +38,5 @@ def login():
     session_id = auth.create_session(user.id)
     response = jsonify(user.to_json())
     response.set_cookie(getenv('SESSION_NAME'), session_id)
-    
+
     return response
