@@ -33,7 +33,7 @@ class BasicAuth(Auth):
         """
         Decodes the Base64 part of the Authorization header
 
-        Arg: base64_authorization_header - str; Base64 encoded authorization 
+        Arg: base64_authorization_header - str; Base64 encoded authorization
              header
         Return: str; decoded value as UTF-8 string, or None if invalid
         """
