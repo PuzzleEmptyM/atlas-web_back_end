@@ -37,7 +37,7 @@ class Auth:
         """
         Arg1: email - str; the email of the user to register
         Arg2: password - str; the password of the user to register
-        Return: User - newly created User object or 
+        Return: User - newly created User object or
                        raises ValueError if user already exists
         """
         try:
