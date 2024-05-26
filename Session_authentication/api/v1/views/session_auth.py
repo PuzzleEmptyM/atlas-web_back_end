@@ -1,4 +1,4 @@
-# api/v1/views/session_auth.py
+#!/usr/bin/env python3
 """
 Handles routes for session-based user authentication
 """
