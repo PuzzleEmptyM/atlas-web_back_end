@@ -2,7 +2,7 @@
 """
 Basic Flask app with user registration endpoint
 """
-from flask import Flask, request, jsonify, abort, make_response
+from flask import Flask, request, jsonify, abort, make_response, redirect
 from auth import Auth
 
 app = Flask(__name__)
@@ -52,6 +52,23 @@ def login():
     response = make_response(jsonify({"email": email, "message": "logged in"}))
     response.set_cookie("session_id", session_id)
     return response
+
+
+@app.route("/sessions", methods=["DELETE"])
+def logout():
+    """
+    DELETE /sessions
+    Logout a user by destroying their session
+    Return: Redirect to GET / or respond with 403 status if ID is not valid
+    """
+    session_id = request.cookies.get("session_id")
+    user = AUTH.get_user_from_session_id(session_id)
+
+    if user is None:
+        abort(403)
+
+    AUTH.destroy_session(user.id)
+    return redirect("/")
 
 
 if __name__ == "__main__":
