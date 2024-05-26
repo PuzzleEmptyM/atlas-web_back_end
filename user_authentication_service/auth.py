@@ -3,6 +3,7 @@
 Auth module
 """
 import bcrypt
+import uuid
 from db import DB
 from user import User
 from sqlalchemy.orm.exc import NoResultFound
@@ -16,6 +17,7 @@ def _hash_password(password: str) -> bytes:
     salt = bcrypt.gensalt()
     hashed = bcrypt.hashpw(password.encode(), salt)
     return hashed
+
 
 def _generate_uuid() -> str:
     """
@@ -35,7 +37,7 @@ class Auth:
         """
         Arg1: email - str; the email of the user to register
         Arg2: password - str; the password of the user to register
-        Return: User - newly created User object or
+        Return: User - newly created User object or 
                        raises ValueError if user already exists
         """
         try:
