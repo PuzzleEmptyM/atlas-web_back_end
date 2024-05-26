@@ -4,6 +4,7 @@ This function "filter_datum" returns a log message obfuscated
 """
 import logging
 import re
+import bcrypt
 from typing import List
 import os
 import mysql.connector
@@ -110,3 +111,14 @@ def get_db() -> connection.MySQLConnection:
     except mysql.connector.Error as err:
         print(f"Error connecting to the database: {err}")
         raise
+
+
+def hash_password(password: str) -> bytes:
+    """
+    Arg: password - string; password to hash
+    
+    Return: the salted hashed password as a byte string
+    """
+    salt = bcrypt.gensalt()
+    hashed = bcrypt.hashpw(password.encode('utf-8'), salt)
+    return hashed
