@@ -63,7 +63,7 @@ class DB:
     def update_user(self, user_id: int, **kwargs) -> None:
         """
         Arg1: user_id - int; the id of the user to update
-        Arg2: **kwargs; arbitrary keyword arguments to update the user attributes
+        Arg2: **kwargs; arbitrary keyword arguments to update user attributes
         Return: None
         """
         user = self.find_user_by(id=user_id)
