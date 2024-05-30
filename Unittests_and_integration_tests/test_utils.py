@@ -81,6 +81,7 @@ class TestMemoize(unittest.TestCase):
     """
     TestMemoize class to test the memoize decorator from utils module.
     """
+
     def test_memoize(self):
         """
         Test that a_property returns the correct result
@@ -100,15 +101,10 @@ class TestMemoize(unittest.TestCase):
         with patch.object(TestClass, 'a_method',
                           return_value=42) as mock_a_method:
             test_instance = TestClass()
-            # Call a_property twice
             result1 = test_instance.a_property
             result2 = test_instance.a_property
-
-            # Verify the results are correct
             self.assertEqual(result1, 42)
             self.assertEqual(result2, 42)
-
-            # Verify a_method was called only once
             mock_a_method.assert_called_once()
 
 
