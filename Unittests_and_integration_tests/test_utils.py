@@ -31,6 +31,19 @@ class TestAccessNestedMap(unittest.TestCase):
         """
         self.assertEqual(access_nested_map(nested_map, path), expected)
 
+    def test_access_nested_map_exception(self, nested_map, path):
+        """
+        Test that access_nested_map raises KeyError for invalid paths.
+
+        Arg1: nested_map - dict; nested dictionary to access.
+        Arg2: path - tuple; path of keys to follow in nested dictionary.
+
+        Return: None
+        """
+        with self.assertRaises(KeyError) as context:
+            access_nested_map(nested_map, path)
+        self.assertEqual(str(context.exception), f"KeyError('{path[-1]}')")
+
 
 if __name__ == "__main__":
     unittest.main()
