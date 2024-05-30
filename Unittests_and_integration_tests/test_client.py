@@ -4,7 +4,7 @@ Unit tests for GithubOrgClient class.
 """
 
 import unittest
-from unittest.mock import patch, Mock
+from unittest.mock import patch
 from parameterized import parameterized
 from client import GithubOrgClient
 
@@ -18,7 +18,7 @@ class TestGithubOrgClient(unittest.TestCase):
         ("google", {"login": "google"}),
         ("abc", {"login": "abc"}),
     ])
-    @patch('client.get_json', return_value={"login": "test"})
+    @patch('client.get_json')
     def test_org(self, org_name, expected, mock_get_json):
         """
         Test that GithubOrgClient.org returns the correct value.
@@ -29,6 +29,8 @@ class TestGithubOrgClient(unittest.TestCase):
 
         Return: None
         """
+        mock_get_json.return_value = expected
+        
         client = GithubOrgClient(org_name)
         result = client.org()
         mock_get_json.assert_called_once_with(
