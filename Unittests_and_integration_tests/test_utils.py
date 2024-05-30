@@ -5,6 +5,7 @@ Includes tests for access_nested_map, get_json, and memoize functions.
 """
 
 import unittest
+from unittest import TestCase
 from parameterized import parameterized
 from unittest.mock import patch, Mock
 from utils import access_nested_map, get_json, memoize
@@ -77,7 +78,7 @@ class TestGetJson(unittest.TestCase):
             self.assertEqual(result, test_payload)
 
 
-class TestMemoize(unittest.TestCase):
+class TestMemoize(TestCase):
     """
     TestMemoize class to test the memoize decorator from utils module.
     """
