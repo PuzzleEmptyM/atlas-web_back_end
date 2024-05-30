@@ -65,7 +65,7 @@ class TestGetJson(unittest.TestCase):
         """
         Test that get_json returns the expected result.
 
-        Arg1: test_url - str; The URL to pass to get_json.
+        Arg1: test_url - str; The URL to find get_json.
         Arg2: test_payload - dict; The expected payload returned by get_json.
 
         Return: None
