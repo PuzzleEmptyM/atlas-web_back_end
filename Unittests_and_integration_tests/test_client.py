@@ -4,6 +4,8 @@ Unit tests for GithubOrgClient class.
 """
 
 import unittest
+import utils
+from utils import access_nested_map, get_json, memoize
 from unittest.mock import patch, PropertyMock
 from parameterized import parameterized
 from client import GithubOrgClient
