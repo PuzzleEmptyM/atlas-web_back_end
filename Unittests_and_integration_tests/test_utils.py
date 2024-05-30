@@ -39,14 +39,14 @@ class TestAccessNestedMap(unittest.TestCase):
         """
         Test that access_nested_map raises KeyError for invalid paths.
 
-        Arg1: nested_map - dict; nested dictionary to access.
-        Arg2: path - tuple; path of keys to follow in nested dictionary.
+        Arg1: nested_map - dict; The nested dictionary to access.
+        Arg2: path - tuple; The path of keys to follow in nested dictionary.
 
         Return: None
         """
         with self.assertRaises(KeyError) as context:
             access_nested_map(nested_map, path)
-        self.assertEqual(str(context.exception), f"KeyError('{path[-1]}')")
+        self.assertEqual(str(context.exception), repr(path[-1]))
 
 
 if __name__ == "__main__":
