@@ -128,7 +128,6 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
         cls.get_patcher = patch('requests.get')
         cls.mock_get = cls.get_patcher.start()
 
-        # Define custom response class
         class MockResponse:
             def __init__(self, json_data):
                 self.json_data = json_data
@@ -136,7 +135,6 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
             def json(self):
                 return self.json_data
 
-        # Define side effects for different URLs
         def get_json_side_effect(url, *args, **kwargs):
             if url == "https://api.github.com/orgs/google":
                 return MockResponse(cls.org_payload)
