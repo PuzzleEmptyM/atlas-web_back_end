@@ -5,6 +5,6 @@ SELECT DISTINCT
 FROM
   metal_bands
 WHERE
-  main_style = 'Glam rock'
+  style LIKE '%Glam rock%'
 ORDER BY
   lifespan DESC;
