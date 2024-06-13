@@ -36,7 +36,9 @@ def call_history(method: Callable) -> Callable:
 class Cache:
     def __init__(self):
         """
-        Initializes the Cache with a Redis connection.
+        Initializes the Cache class with a Redis connection and clears any
+        existing data from Redis. This class provides methods to store data
+        in Redis, retrieve it, and log access patterns.
         """
         self._redis = redis.Redis()
         self._redis.flushdb()
