@@ -8,6 +8,11 @@ from typing import Union, Callable, Optional
 from functools import wraps
 
 def count_calls(method: Callable) -> Callable:
+    """
+    A decorator that counts the number of times a method is called, using Redis.
+    The count for each method is stored in Redis under a key that includes
+    the method's qualified name using the __qualname__ attribute.
+    """
     @wraps(method)
     def wrapper(self, *args, **kwargs):
         method_key = method.__qualname__
@@ -38,7 +43,8 @@ class Cache:
         self._redis.set(key, data)
         return key
 
-    def get(self, key: str, fn: Optional[Callable[[bytes], Union[str, int, float]]] = None) -> Union[str, bytes, int, float, None]:
+    def get(self, key: str, fn: Optional[Callable[[bytes], Union[
+        str, int, float]]] = None) -> Union[str, bytes, int, float, None]:
         value = self._redis.get(key)
         if value is None:
             return None
