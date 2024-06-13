@@ -13,10 +13,11 @@ def count_calls(method: Callable) -> Callable:
     The count for each method is stored in Redis under a key that includes
     the method's qualified name using the __qualname__ attribute.
     """
+    @wraps(method)
     def wrapper(self, *args, **kwargs):
         method_key = method.__qualname__
         self._redis.incr(method_key)
-        return method(*args, **kwargs)
+        return method(self, *args, **kwargs)
     return wrapper
 
 class Cache:
