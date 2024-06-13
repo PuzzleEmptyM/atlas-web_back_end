@@ -37,6 +37,7 @@ class Cache:
         self._redis.flushdb()
 
     @count_calls
+    @call_history  # Decorate the store method with call_history
     def store(self, data: Union[str, bytes, int, float]) -> str:
         key = str(uuid.uuid4())
         self._redis.set(key, data)
