@@ -1,10 +1,7 @@
 -- Old school band
-SELECT
-  name AS band_name,
-  (CASE
-     WHEN split IS NULL THEN YEAR(CURDATE()) - formed
-     ELSE split - formed
-   END) AS lifespan
+SELECT DISTINCT
+  band_name,
+  (IFNULL(split, 2020)-formed) AS lifespan
 FROM
   metal_bands
 WHERE
