@@ -3,6 +3,9 @@
 from pymongo import MongoClient
 
 def log_stats():
+    """
+    Connects to MongoDB, retrieves Nginx log stats, and prints them.
+    """
     client = MongoClient()
     db = client.logs
     collection = db.nginx
