@@ -8,11 +8,6 @@ from typing import Union, Callable, Optional
 from functools import wraps
 
 def count_calls(method: Callable) -> Callable:
-    """
-    A decorator that counts the number of times a method is called, using Redis.
-    The count for each method is stored in Redis under a key that includes
-    the method's qualified name using the __qualname__ attribute.
-    """
     @wraps(method)
     def wrapper(self, *args, **kwargs):
         method_key = method.__qualname__
@@ -37,7 +32,7 @@ class Cache:
         self._redis.flushdb()
 
     @count_calls
-    @call_history  # Decorate the store method with call_history
+    @call_history
     def store(self, data: Union[str, bytes, int, float]) -> str:
         key = str(uuid.uuid4())
         self._redis.set(key, data)
@@ -56,3 +51,17 @@ class Cache:
 
     def get_int(self, key: str) -> Optional[int]:
         return self.get(key, fn=int)
+
+def replay(method: Callable):
+    method_name = method.__qualname__
+    count_key = method_name
+    input_key = f"{method_name}:inputs"
+    output_key = f"{method_name}:outputs"
+    
+    count = int(method.__self__._redis.get(count_key))
+    inputs = method.__self__._redis.lrange(input_key, 0, -1)
+    outputs = method.__self__._redis.lrange(output_key, 0, -1)
+    
+    print(f"{method_name} was called {count} times:")
+    for input_str, output_str in zip(inputs, outputs):
+        print(f"{method_name}(*{input_str.decode()}) -> {output_str.decode()}")
