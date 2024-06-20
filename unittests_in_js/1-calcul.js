@@ -1,3 +1,5 @@
+// Function to perform mathematical operations on two rounded numbers
+
 function calculateNumber(type, a, b) {
   const roundedA = Math.round(a);
   const roundedB = Math.round(b);
