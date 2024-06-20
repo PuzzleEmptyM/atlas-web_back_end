@@ -1,10 +1,5 @@
-/**
- * Function to perform mathematical operations on two rounded numbers.
- * @param {string} type - The type of operation: 'SUM', 'SUBTRACT', or 'DIVIDE'.
- * @param {number} a - The first number.
- * @param {number} b - The second number.
- * @returns {number|string} The result of the operation, or 'Error' if division by zero.
- */
+// Function to perform mathematical operations on two rounded numbers.
+
 function calculateNumber(type, a, b) {
   const roundedA = Math.round(a);
   const roundedB = Math.round(b);
@@ -24,4 +19,4 @@ function calculateNumber(type, a, b) {
   }
 }
 
-export default calculateNumber;
+module.exports = calculateNumber;

@@ -1,7 +1,13 @@
-import { expect } from 'chai';
-import calculateNumber from './2-calcul_chai.js';
+const calculateNumber = require('./2-calcul_chai');
 
 describe('calculateNumber', () => {
+  let expect;
+
+  before(async () => {
+    const chai = await import('chai');
+    expect = chai.expect;
+  });
+
   describe('SUM', () => {
     it('should return 6 when inputs are 1.4 and 4.5', () => {
       expect(calculateNumber('SUM', 1.4, 4.5)).to.equal(6);
