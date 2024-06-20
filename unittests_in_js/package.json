@@ -1,16 +1,17 @@
 {
   "name": "unittests_in_js",
   "version": "1.0.0",
-  "description": "At the end of this project, you are expected to be able to explain to anyone, without the help of Google:  What ES6 is New features introduced in ES6 The difference between a constant and a variable Block-scoped variables Arrow functions and function parameters default to them",
+  "description": "testing in js",
   "main": "index.js",
+  "type": "commonjs",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha test.js"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "chai": "^5.1.1",
-    "mocha": "^10.4.0"
+    "chai": "^4.2.0",
+    "mocha": "^6.2.2",
+    "sinon": "^7.5.0"
   }
 }
