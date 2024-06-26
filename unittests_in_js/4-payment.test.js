@@ -20,6 +20,7 @@ describe('sendPaymentRequestToApi', () => {
 
   it('should call Utils.calculateNumber with SUM, 100, 20 and return 10', () => {
     sendPaymentRequestToApi(100, 20);
+
     expect(calculateNumberStub.calledOnce).to.be.true;
     expect(calculateNumberStub.calledWith('SUM', 100, 20)).to.be.true;
     expect(consoleSpy.calledOnce).to.be.true;
