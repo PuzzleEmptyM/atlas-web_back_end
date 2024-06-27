@@ -1,9 +1,14 @@
-import { createClient } from 'redis';
+import redis from 'redis';
 
 console.log('Starting Redis client...');
 
-const client = createClient({
-  url: 'redis://127.0.0.1:6379'
+const client = redis.createClient({
+  host: '127.0.0.1',
+  port: 6379
+});
+
+client.on('ready', () => {
+  console.log('Redis client ready to use');
 });
 
 client.on('connect', () => {
@@ -20,10 +25,6 @@ client.on('end', () => {
 
 client.on('error', (err) => {
   console.log(`Redis client not connected to the server: ${err.message}`);
-});
-
-client.connect().catch(err => {
-  console.error('Failed to connect:', err.message);
 });
 
 process.stdin.resume();
