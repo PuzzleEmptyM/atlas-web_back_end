@@ -16,7 +16,7 @@ const TaskType = new GraphQLObjectType({
   }),
 });
 
-// Define Root Query
+// Define RootQuery
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
@@ -25,6 +25,7 @@ const RootQuery = new GraphQLObjectType({
       args: { id: { type: GraphQLString } },
       resolve(parent, args) {
         // This is where you would get the data from a data source
+        // For now, returning a static example task
         return {
           id: args.id,
           title: 'Example Task',
