@@ -1,0 +1,17 @@
+{
+  projects {
+    id
+    title
+    weight
+    description
+    tasks {
+      title
+      description
+    }
+  }
+  tasks {
+    id
+    title
+    description
+  }
+}

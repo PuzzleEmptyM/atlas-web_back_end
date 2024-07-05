@@ -5,6 +5,7 @@ const {
   GraphQLSchema,
   GraphQLID,
   GraphQLList,
+  GraphQLScalarType,
 } = require('graphql');
 const _ = require('lodash');
 
@@ -50,7 +51,7 @@ const TaskType = new GraphQLObjectType({
     project: {
       type: ProjectType,
       resolve(parent, args) {
-        return _.find(projects, { id: parent.projectId })
+        return _.find(projects, { id: parent.projectId });
       }
     }
   }),
@@ -66,7 +67,7 @@ const ProjectType = new GraphQLObjectType({
     tasks: {
       type: new GraphQLList(TaskType),
       resolve(parent, args) {
-        return _.filter(tasks, { projectId: parent.id })
+        return _.filter(tasks, { projectId: parent.id });
       }
     }
   }),
@@ -87,6 +88,18 @@ const RootQuery = new GraphQLObjectType({
       args: { id: { type: GraphQLID } },
       resolve(parent, args) {
         return _.find(projects, { id: args.id });
+      },
+    },
+    tasks: {
+      type: new GraphQLList(TaskType),
+      resolve(parent, args) {
+        return tasks;
+      },
+    },
+    projects: {
+      type: new GraphQLList(ProjectType),
+      resolve(parent, args) {
+        return projects;
       },
     },
   },
